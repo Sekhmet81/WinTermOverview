@@ -52,7 +52,7 @@ namespace WinTermOverview
         {
             List<String> machineUids = new List<String>();
             string sql;
-            DatabaseObjectClass awsConn = new DatabaseObjectClass("postgres", "localhost", "Harvard%2525");
+            DatabaseObjectClass awsConn = new DatabaseObjectClass("postgres", "26.0.0.5", "retriever");
             sql = "SELECT * FROM newdevices WHERE venuelocation = " + TextBoxVenLoc.Text;
             DataSet dsAWS = awsConn.ReturnDataset(sql);
 
@@ -105,15 +105,15 @@ namespace WinTermOverview
             dynamicStackPanel.Children.Add(lbl1);
             Label lbl2 = new Label();
             lbl2.Content = machinename;
-            lbl2.Foreground = Brushes.Green;
+            lbl2.Foreground = Brushes.LimeGreen;
             dynamicStackPanel.Children.Add(lbl2);
             Label lbl3 = new Label();
             lbl3.Content = product;
-            lbl3.Foreground = Brushes.Blue;
+            lbl3.Foreground = Brushes.MediumBlue;
             dynamicStackPanel.Children.Add(lbl3);
             Label lbl4 = new Label();
             lbl4.Content = installedversion;
-            lbl4.Foreground = Brushes.Purple;
+            lbl4.Foreground = Brushes.BlueViolet;
             dynamicStackPanel.Children.Add(lbl4);
             Label lbl5 = new Label();
             lbl5.Content = terminaldebug;
