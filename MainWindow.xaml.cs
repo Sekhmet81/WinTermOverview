@@ -25,12 +25,12 @@ namespace WinTermOverview
     public partial class MainWindow : Window
     {
         
-        private int machinenumber;
+        private string machinenumber;
         private string machinename;
-        private string product;
-        private string osinfo;
+        private string machineid;
+        
         private string installedversion;
-        private bool terminaldebug;
+        
 
         public MainWindow()
         {
@@ -108,17 +108,17 @@ namespace WinTermOverview
             lbl2.Foreground = Brushes.LimeGreen;
             dynamicStackPanel.Children.Add(lbl2);
             Label lbl3 = new Label();
-            lbl3.Content = product;
+            lbl3.Content = machineid;
             lbl3.Foreground = Brushes.MediumBlue;
             dynamicStackPanel.Children.Add(lbl3);
             Label lbl4 = new Label();
             lbl4.Content = installedversion;
             lbl4.Foreground = Brushes.BlueViolet;
             dynamicStackPanel.Children.Add(lbl4);
-            Label lbl5 = new Label();
-            lbl5.Content = terminaldebug;
-            lbl5.Foreground = Brushes.Orange;
-            dynamicStackPanel.Children.Add(lbl5);
+            //Label lbl5 = new Label();
+            //lbl5.Content = terminaldebug;
+            //lbl5.Foreground = Brushes.Orange;
+            //dynamicStackPanel.Children.Add(lbl5);
             Grid.SetRow(dynamicStackPanel, r);
             Grid.SetColumn(dynamicStackPanel, c);
             Main.Children.Add(dynamicStackPanel);
@@ -146,12 +146,12 @@ namespace WinTermOverview
                     if (json != null && json.Count > 2)
                     {
                         
-                        machinenumber = int.Parse(json["machinenumber"].ToString());
+                        machinenumber = "Machine #" + int.Parse(json["machinenumber"].ToString());
                         machinename = json["machinename"].ToString();
-                        product = json["product"].ToString();
-                        osinfo = json["osinfo"].ToString();
+                        machineid = json["machineid"].ToString();
+                        
                         installedversion = json["installedversion"].ToString();
-                        terminaldebug = bool.Parse(json["terminaldebug"].ToString() == "t" ? "true" : "false");
+                        
                     }
                 }
                 else
