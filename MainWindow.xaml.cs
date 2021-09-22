@@ -53,6 +53,11 @@ namespace WinTermOverview
             List<String> machineUids = new List<String>();
             string sql;
             DatabaseObjectClass awsConn = new DatabaseObjectClass("postgres", "26.0.0.5", "retriever");
+#if DEBUG
+            awsConn.Connection.Host = "localhost";
+            awsConn.Connection.Password = "Harvard%2525";
+#endif
+
             sql = "SELECT * FROM newdevices WHERE venuelocation = " + TextBoxVenLoc.Text;
             DataSet dsAWS = awsConn.ReturnDataset(sql);
 
@@ -126,7 +131,6 @@ namespace WinTermOverview
         }
         private async Task GetFromApi(string machineuid)
         {
-            Newtonsoft.Json.Linq.JObject json = null;
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://retrieverdigital.com");
 
@@ -141,7 +145,7 @@ namespace WinTermOverview
                 if (response.IsSuccessStatusCode)
                 {
                     var data = await response.Content.ReadAsStringAsync();
-                    json = Newtonsoft.Json.Linq.JObject.Parse(data.ToString());
+                    JObject json = Newtonsoft.Json.Linq.JObject.Parse(data.ToString());
 
                     if (json != null && json.Count > 2)
                     {
