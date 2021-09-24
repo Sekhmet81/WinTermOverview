@@ -5,50 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WinTermOverview"
         mc:Ignorable="d"
-        Title="WinTermOverview" Background="Black" Height="700" Width="600" WindowStartupLocation="CenterScreen">
-    <Grid x:Name="Supa" Background="Black" Height="Auto" Width="Auto">
-        <Grid x:Name="Main">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="200"/>
-            </Grid.ColumnDefinitions>
-            <Label x:Name="LabelVenueLocation"
+        Title="WinTermOverview" Background="Transparent"
+        Height="850" Width="750" WindowStartupLocation="Manual"
+        AllowsTransparency="True" WindowStyle="None">
+    <Grid x:Name="Main" Height="Auto" Width="Auto" >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Name="MainWindowTitleGrid" Height="50"/>
+            <RowDefinition Name="LocationSearch" Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Row="0"  RadiusY="20" RadiusX="20" VerticalAlignment="Stretch"  MouseDown="titleBarDrag">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF1511AD" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBlock  Padding="10" Foreground="White"  MouseDown="titleBarDrag" Width="750"><Run FontWeight="Bold" FontSize="24" FontFamily="Cambria" Text="WinTerm Overview"/><Run Text="  "/><Run FontWeight="Bold" FontSize="12" FontFamily="Cambria" Text="Version 1.0.1"/></TextBlock>
+        <Rectangle Grid.Column="0" HorizontalAlignment="Right" Height="35" 
+                   Stroke="Black" VerticalAlignment="Center" Width="35"
+                   Margin="0,0,15,0" RadiusY="10" RadiusX="10" >
+        </Rectangle>
+        <Image x:Name="Close" HorizontalAlignment="Right" Height="20" Width="20" VerticalAlignment="Center"
+               Margin="0,0,23,0" Grid.Column="0" MouseLeftButtonDown="xButtonClick" Source="/x-mark-xxl.png"/>
+        <Border Grid.Row="1" Background="Black" />
+        <Label x:Name="LabelVenueLocation"
                Content="Venue Location:"
-               Foreground="White" RenderTransformOrigin="0.5,0.5" FontSize="24" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <Label.RenderTransform>
-                    <TransformGroup>
-                        <TranslateTransform X="0" Y="0"/>
-                    </TransformGroup>
-                </Label.RenderTransform>
-            </Label>
-            <TextBox x:Name="TextBoxVenLoc"      
+               Foreground="White"  FontSize="24" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,3,552,0" Grid.Row="1">
+
+        </Label>
+        <TextBox x:Name="TextBoxVenLoc"      
                  Text=""    
                  Height="24"        
                  Width="150"       
-                 Margin="5,38,0,38"     
-                 Grid.Column="1" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
-                <TextBox.RenderTransform>
-                    <TransformGroup>
-                        <TranslateTransform Y="4" X="-25"/>
-                    </TransformGroup>
-                </TextBox.RenderTransform>
-            </TextBox>
-            <Button x:Name="ShowButton"        
+                 Margin="0,13,0,13" HorizontalAlignment="Center" Grid.Row="1"/>
+        <Button x:Name="ShowButton"        
                 Height="24"        
                 Width="100"        
                 Content="Show"        
                 HorizontalAlignment="Left"        
-                Margin="20 10 0 0"      
+                Margin="615,12,0,14"      
                 Command="{Binding RegisterButtonClicked}"    
-                Grid.Row="0"        
-                Grid.Column="2" FontSize="16" Click="ShowButton_Click"/>
+                Grid.Row="1" FontSize="16" Click="ShowButton_Click"/>
+        <Grid x:Name="Display" Height="750" Width="750" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
         </Grid>
     </Grid>
 </Window>

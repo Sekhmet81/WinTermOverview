@@ -24,7 +24,6 @@ namespace WinTermOverview
     /// </summary>
     public partial class MainWindow : Window
     {
-        
         private string machinenumber;
         private string machinename;
         private string machineid;
@@ -74,9 +73,10 @@ namespace WinTermOverview
             }
             //MessageBox.Show(String.Join("\n", machineUids));
 
-            int r = 1;
+            int r = 0;
             int c = 0;
             int elem = 0;
+            Display.Children.Clear();
             foreach (string muId in machineUids)
             {
                 await GetFromApi(muId);
@@ -101,8 +101,7 @@ namespace WinTermOverview
         public void CreateDynamicStackPanel(int r, int c)
         {
             StackPanel dynamicStackPanel = new StackPanel();
-            dynamicStackPanel.Width = 200;
-            dynamicStackPanel.Height = 200;
+            dynamicStackPanel.Background = Brushes.Black;
             dynamicStackPanel.Orientation = Orientation.Vertical;
             Label lbl1 = new Label();
             lbl1.Content = machinenumber;
@@ -126,7 +125,8 @@ namespace WinTermOverview
             //dynamicStackPanel.Children.Add(lbl5);
             Grid.SetRow(dynamicStackPanel, r);
             Grid.SetColumn(dynamicStackPanel, c);
-            Main.Children.Add(dynamicStackPanel);
+            
+            Display.Children.Add(dynamicStackPanel);
 
         }
         private async Task GetFromApi(string machineuid)
@@ -166,6 +166,13 @@ namespace WinTermOverview
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-
+        private void xButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            Close();
+        }
+        private void titleBarDrag(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
     }
 }
